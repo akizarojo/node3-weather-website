@@ -8,6 +8,8 @@ console.log(__dirname)
 console.log(path.join(__dirname,'../public'))
 const app = express()
 
+const port = process.env.PORT || 3000
+
 // Define paths for Express config
 const publicDirectory = path.join(__dirname,'../public')
 const viewPath = path.join(__dirname,'../templates/views')
@@ -49,6 +51,7 @@ app.get('/weather',(req, res) => {
             error: "Please provide address"
         })
     }
+
     geocode(req.query.address,(error,{latitude, longtitude, location} = {}) => {
         if(error){
             return res.send({
@@ -69,8 +72,6 @@ app.get('/weather',(req, res) => {
     }) 
 })                             
 
-
-
 app.get('/help/*',(req,res) => {
     
     res.render('404',{
@@ -86,6 +87,6 @@ app.get('*',(req, res) => {
     })
 })
 
-app.listen(3000, () => {
-    console.log('Service is up on port 3000.')
+app.listen(port, () => {
+    console.log('Service is up on port ' + port)
 })
