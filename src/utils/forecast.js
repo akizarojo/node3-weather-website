@@ -17,7 +17,6 @@ const forecast = (latitude,longtitude, callback) => {
                 const data = weather + ". It is currently " + temperature + " degress out. But it feels like " + feelsLike + " degress out, and it will going to be " + weather
                 callback(undefined,data)
         }
-
     })
 }
 
